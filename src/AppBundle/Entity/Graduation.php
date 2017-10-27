@@ -3,10 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * Graduation
  *
+ * @ApiResource
  * @ORM\Table(name="graduation")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GraduationRepository")
  */

@@ -3,10 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * SideProject
  *
+ * @ApiResource
  * @ORM\Table(name="side_project")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SideProjectRepository")
  */

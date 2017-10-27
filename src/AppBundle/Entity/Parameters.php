@@ -3,10 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * Parameters
  *
+ * @ApiResource
  * @ORM\Table(name="parameters")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ParametersRepository")
  */
@@ -94,4 +96,3 @@ class Parameters
         return $this->emailAddress;
     }
 }
-

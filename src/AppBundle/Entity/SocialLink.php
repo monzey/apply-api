@@ -3,10 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * SocialLink
  *
+ * @ApiResource
  * @ORM\Table(name="social_link")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SocialLinkRepository")
  */
