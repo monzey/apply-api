@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Experience
@@ -20,6 +21,7 @@ class Experience extends Thing
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"read"})
      */
     private $id;
 
@@ -27,6 +29,7 @@ class Experience extends Thing
      * @var string
      *
      * @ORM\Column(name="company", type="string", length=255)
+     * @Groups({"read"})
      */
     private $company;
 
@@ -34,9 +37,15 @@ class Experience extends Thing
      * @var string
      *
      * @ORM\Column(name="year", type="string", length=255)
+     * @Groups({"read"})
      */
     private $year;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Resume", inversedBy="experiences")
+     * @ORM\JoinTable(name="resumes_experiences")
+     */
+    private $resumes;
 
     /**
      * Get id
@@ -118,5 +127,46 @@ class Experience extends Thing
     public function getYear()
     {
         return $this->year;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->resumes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add resume
+     *
+     * @param \AppBundle\Entity\Resume $resume
+     *
+     * @return Experience
+     */
+    public function addResume(\AppBundle\Entity\Resume $resume)
+    {
+        $this->resumes[] = $resume;
+
+        return $this;
+    }
+
+    /**
+     * Remove resume
+     *
+     * @param \AppBundle\Entity\Resume $resume
+     */
+    public function removeResume(\AppBundle\Entity\Resume $resume)
+    {
+        $this->resumes->removeElement($resume);
+    }
+
+    /**
+     * Get resumes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResumes()
+    {
+        return $this->resumes;
     }
 }

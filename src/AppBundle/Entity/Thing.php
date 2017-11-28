@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Thing
@@ -15,22 +16,25 @@ class Thing
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"read"})
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Groups({"read"})
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
+     * @Groups({"read"})
      */
-    private $url;
+    protected $url;
 
 
     /**
