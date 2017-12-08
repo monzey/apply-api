@@ -16,7 +16,7 @@ class Thing
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      */
     protected $name;
 
@@ -24,7 +24,7 @@ class Thing
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      */
     protected $description;
 
@@ -32,7 +32,7 @@ class Thing
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      */
     protected $url;
 

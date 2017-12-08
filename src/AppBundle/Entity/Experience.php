@@ -9,7 +9,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Experience
  *
- * @ApiResource
+ * @ApiResource(attributes={
+ *     "normalization_context"={"groups"={"read"}},
+ *     "denormalization_context"={"groups"={"write"}}
+ * })
+ *
  * @ORM\Table(name="experience")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ExperienceRepository")
  */
@@ -29,7 +33,7 @@ class Experience extends Thing
      * @var string
      *
      * @ORM\Column(name="company", type="string", length=255)
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      */
     private $company;
 
@@ -37,13 +41,14 @@ class Experience extends Thing
      * @var string
      *
      * @ORM\Column(name="year", type="string", length=255)
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      */
     private $year;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Resume", inversedBy="experiences")
+     * @ORM\ManyToMany(targetEntity="Resume", inversedBy="experiences", cascade={"persist"}, orphanRemoval=true)
      * @ORM\JoinTable(name="resumes_experiences")
+     * @Groups({"write"})
      */
     private $resumes;
 

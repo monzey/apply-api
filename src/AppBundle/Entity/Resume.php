@@ -11,7 +11,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Resume
  *
  * @ApiResource(attributes={
- * "normalization_context"={"groups"={"read"}}
+ *     "normalization_context"={"groups"={"read"}},
+ *     "denormalization_context"={"groups"={"write"}}
  * })
  *
  * @ORM\Table(name="resume")
@@ -25,7 +26,7 @@ class Resume extends Thing
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      */
     private $id;
 
