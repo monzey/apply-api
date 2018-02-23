@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * Experience
@@ -46,9 +47,10 @@ class Experience extends Thing
     private $year;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Resume", inversedBy="experiences", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity="Resume", inversedBy="experiences", cascade={"persist"})
      * @ORM\JoinTable(name="resumes_experiences")
-     * @Groups({"write"})
+     * @Groups({"write", "read"})
+     * @MaxDepth(2)
      */
     private $resumes;
 

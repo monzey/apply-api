@@ -33,3 +33,7 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    'AppBundle\Serializer\ThingContextBuilder':
+        decorates: 'api_platform.serializer.context_builder'
+        arguments: [ '@AppBundle\Serializer\ThingContextBuilder.inner' ]
+        autoconfigure: false
