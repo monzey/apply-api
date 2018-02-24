@@ -26,6 +26,7 @@ class Graduation extends Thing
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"read"})
      */
     private $id;
 
@@ -33,6 +34,7 @@ class Graduation extends Thing
      * @var string
      *
      * @ORM\Column(name="year", type="string", length=255)
+     * @Groups({"read", "write"})
      */
     private $year;
 
@@ -40,6 +42,7 @@ class Graduation extends Thing
      * @var string
      *
      * @ORM\Column(name="school", type="string", length=255)
+     * @Groups({"read", "write"})
      */
     private $school;
 

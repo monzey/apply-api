@@ -77,6 +77,7 @@ class Theme extends Thing
     {
         return $this->css;
     }
+
     /**
      * Constructor
      */
