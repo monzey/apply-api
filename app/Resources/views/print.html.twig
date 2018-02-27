@@ -1,1 +1,44 @@
-Bonsoir
+{# print.html.twig #}
+
+{# @param resume Resume #}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Print.html</title>
+    </head>
+    <body>
+        <b>{{ parameters.fullName }}</b>
+        {{ parameters.emailAddress }}
+
+        <hr>
+        <b>Experiences</b>
+
+        {% for experience in resume.experiences %}
+            <br></br>
+            {{ experience.name }} - {{ experience.company }}/{{ experience.year }}
+            <p>{{ experience.description }}</p>
+        {% endfor %}
+
+        <hr>
+        <b>Scholarship</b>
+
+        {% for graduation in resume.graduations %}
+            <br></br>
+            {{ graduation.name }} - {{ graduation.school }}/{{ graduation.year }}
+            <p>{{ graduation.description }}</p>
+        {% endfor %}
+
+        <hr>
+        <b>Projects</b>
+
+        {% for project in resume.sideProjects %}
+            <br></br>
+            {{ project.name }} 
+            <p>{{ project.description }}</p>
+        {% endfor %}
+    </body>
+</html>
+

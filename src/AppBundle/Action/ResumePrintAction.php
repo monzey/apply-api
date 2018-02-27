@@ -18,15 +18,18 @@ class ResumePrintAction
 {
     protected $knpSnappyPdf;
     protected $view;
+    protected $em;
 
     /**
      * @param \Knp\Snappy\Pdf $knpSnappyPdf
      * @param \Twig\Environment $view
+     * @param \Doctrine\ORM\EntityManager $em
      */
-    public function __construct(\Knp\Snappy\Pdf $knpSnappyPdf, \Twig\Environment $view)
+    public function __construct(\Knp\Snappy\Pdf $knpSnappyPdf, \Twig\Environment $view, \Doctrine\ORM\EntityManager $em)
     {
         $this->knpSnappyPdf = $knpSnappyPdf;
         $this->view = $view;
+        $this->em = $em;
     }
     
     /**
@@ -42,8 +45,14 @@ class ResumePrintAction
      */
     public function __invoke(Resume $resume)
     {
-        $html = $this->view->render('print.html.twig', array());
+        $parameters = $this->em->getRepository('AppBundle:Parameters')->find(1);
 
+        $html = $this->view->render('print.html.twig', array(
+            'resume' => $resume, 
+            'parameters' => $parameters
+        ));
+
+        // return new Response($html, Response::HTTP_OK);
         return new PdfResponse($this->knpSnappyPdf->getOutputFromHtml($html), 'file.pdf');
     }
 } // END class ResumePrintAction
