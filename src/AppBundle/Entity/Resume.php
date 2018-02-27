@@ -11,10 +11,14 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 /**
  * Resume
  *
- * @ApiResource(attributes={
- *     "normalization_context"={"groups"={"read"}},
- *     "denormalization_context"={"groups"={"write"}}
- * })
+ * @ApiResource(
+ *      attributes={
+ *              "normalization_context"={"groups"={"read"}},
+ *              "denormalization_context"={"groups"={"write"}}
+ *      },
+ *      itemOperations={
+ *              "print"={"route_name"="resume_print"}
+ *      })
  *
  * @ORM\Table(name="resume")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ResumeRepository")
