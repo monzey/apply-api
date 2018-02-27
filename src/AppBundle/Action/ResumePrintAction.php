@@ -15,6 +15,16 @@ use AppBundle\Entity\Resume;
  */
 class ResumePrintAction
 {
+    protected $knpSnappyPdf;
+
+    /**
+     * @param \Knp\Snappy\Pdf $knpSnappyPdf
+     */
+    public function __construct(\Knp\Snappy\Pdf $knpSnappyPdf)
+    {
+        $this->knpSnappyPdf = $knpSnappyPdf;
+    }
+    
     /**
      * @Route(
      *     name="resume_print",
@@ -28,6 +38,10 @@ class ResumePrintAction
      */
     public function __invoke(Resume $resume)
     {
+        $test = $this->knpSnappyPdf->generateFromHtml(
+
+        );
+
         return new Response(null, Response::HTTP_OK);
     }
 } // END class ResumePrintAction

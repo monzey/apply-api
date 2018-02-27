@@ -81,6 +81,7 @@ nelmio_cors:
     paths:
         '^/': ~
 
+# API Platform
 api_platform:
     http_cache:
         invalidation:
@@ -91,8 +92,14 @@ api_platform:
         vary: ['Content-Type', 'Authorization']
         public: true
 
+# Lexik JWT Authentication
 lexik_jwt_authentication:
     private_key_path: '%jwt_private_key_path%'
     public_key_path:  '%jwt_public_key_path%'
     pass_phrase:      '%jwt_key_pass_phrase%'
     token_ttl:        '%jwt_token_ttl%'
+
+# KNP Snappy
+knp_snappy:
+    pdf:
+        enabled: true
