@@ -4,6 +4,7 @@ namespace AppBundle\Action;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use AppBundle\Entity\Resume;
 
 /**
@@ -16,13 +17,16 @@ use AppBundle\Entity\Resume;
 class ResumePrintAction
 {
     protected $knpSnappyPdf;
+    protected $view;
 
     /**
      * @param \Knp\Snappy\Pdf $knpSnappyPdf
+     * @param \Twig\Environment $view
      */
-    public function __construct(\Knp\Snappy\Pdf $knpSnappyPdf)
+    public function __construct(\Knp\Snappy\Pdf $knpSnappyPdf, \Twig\Environment $view)
     {
         $this->knpSnappyPdf = $knpSnappyPdf;
+        $this->view = $view;
     }
     
     /**
@@ -38,10 +42,8 @@ class ResumePrintAction
      */
     public function __invoke(Resume $resume)
     {
-        $test = $this->knpSnappyPdf->generateFromHtml(
+        $html = $this->view->render('print.html.twig', array());
 
-        );
-
-        return new Response(null, Response::HTTP_OK);
+        return new PdfResponse($this->knpSnappyPdf->getOutputFromHtml($html), 'file.pdf');
     }
 } // END class ResumePrintAction
