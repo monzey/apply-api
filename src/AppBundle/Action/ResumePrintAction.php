@@ -45,14 +45,11 @@ class ResumePrintAction
      */
     public function __invoke(Resume $resume)
     {
-        $parameters = $this->em->getRepository('AppBundle:Parameters')->find(1);
-
         $html = $this->view->render('print.html.twig', array(
-            'resume' => $resume, 
-            'parameters' => $parameters
+            'resume' => $resume
         ));
 
-        // return new Response($html, Response::HTTP_OK);
-        return new PdfResponse($this->knpSnappyPdf->getOutputFromHtml($html), 'file.pdf');
+        return new Response($html, Response::HTTP_OK);
+        // return new PdfResponse($this->knpSnappyPdf->getOutputFromHtml($html), 'file.pdf');
     }
 } // END class ResumePrintAction

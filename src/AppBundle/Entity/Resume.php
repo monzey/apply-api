@@ -68,6 +68,15 @@ class Resume extends Thing
     private $themes;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Parameters")
+     * @ORM\JoinColumn(name="parameters_id", referencedColumnName="id")
+     * @ApiSubresource
+     * @Groups({"read"})
+     * @MaxDepth(1)
+     */
+    private $parameters;
+
+    /**
      * Get id
      *
      * @return int
@@ -218,5 +227,29 @@ class Resume extends Thing
     public function getThemes()
     {
         return $this->themes;
+    }
+
+    /**
+     * Set parameters
+     *
+     * @param \AppBundle\Entity\Parameters $parameters
+     *
+     * @return Resume
+     */
+    public function setParameters(\AppBundle\Entity\Parameters $parameters = null)
+    {
+        $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * Get parameters
+     *
+     * @return \AppBundle\Entity\Parameters
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 }

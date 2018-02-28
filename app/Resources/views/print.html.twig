@@ -10,33 +10,33 @@
         <title>Print.html</title>
     </head>
     <body>
-        <b>{{ parameters.fullName }}</b>
-        {{ parameters.emailAddress }}
+        <b>{{ resume.parameters.fullName }}</b>
+        {{ resume.parameters.emailAddress }}
 
         <hr>
-        <b>Experiences</b>
+        <h2>Experiences</h2>
 
         {% for experience in resume.experiences %}
             <br></br>
-            {{ experience.name }} - {{ experience.company }}/{{ experience.year }}
+            <b>{{ experience.name }}</b> - {{ experience.company }}/{{ experience.year }}
             <p>{{ experience.description }}</p>
         {% endfor %}
 
         <hr>
-        <b>Scholarship</b>
+        <h2>Scholarship</h2>
 
         {% for graduation in resume.graduations %}
             <br></br>
-            {{ graduation.name }} - {{ graduation.school }}/{{ graduation.year }}
+            <b>{{ graduation.name }}</b> - {{ graduation.school }}/{{ graduation.year }}
             <p>{{ graduation.description }}</p>
         {% endfor %}
 
         <hr>
-        <b>Projects</b>
+        <h2>Projects</h2>
 
         {% for project in resume.sideProjects %}
             <br></br>
-            {{ project.name }} 
+            <b>{{ project.name }}</b> 
             <p>{{ project.description }}</p>
         {% endfor %}
     </body>
