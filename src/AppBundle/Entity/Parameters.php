@@ -8,7 +8,12 @@ use ApiPlatform\Core\Annotation\ApiResource;
 /**
  * Parameters
  *
- * @ApiResource
+ * @ApiResource(
+ *      collectionOperations={
+ *              "get"={"method"="GET", "route_name"="parameters_get"}
+ *      },
+ *      itemOperations={}
+ * )
  * @ORM\Table(name="parameters")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ParametersRepository")
  */

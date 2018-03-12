@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * SocialLink
@@ -30,6 +32,13 @@ class SocialLink extends Thing
      */
     private $icon;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Resume", inversedBy="socialLinks", cascade={"persist"})
+     * @ORM\JoinTable(name="resumes_social_links")
+     * @Groups({"write", "read"})
+     * @MaxDepth(2)
+     */
+    private $resumes;
 
     /**
      * Get id
@@ -63,5 +72,46 @@ class SocialLink extends Thing
     public function getIcon()
     {
         return $this->icon;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->resumes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add resume
+     *
+     * @param \AppBundle\Entity\Resume $resume
+     *
+     * @return SocialLink
+     */
+    public function addResume(\AppBundle\Entity\Resume $resume)
+    {
+        $this->resumes[] = $resume;
+
+        return $this;
+    }
+
+    /**
+     * Remove resume
+     *
+     * @param \AppBundle\Entity\Resume $resume
+     */
+    public function removeResume(\AppBundle\Entity\Resume $resume)
+    {
+        $this->resumes->removeElement($resume);
+    }
+
+    /**
+     * Get resumes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResumes()
+    {
+        return $this->resumes;
     }
 }

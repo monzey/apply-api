@@ -45,8 +45,11 @@ class ResumePrintAction
      */
     public function __invoke(Resume $resume)
     {
+        $parameters = $this->em->getRepository('AppBundle:Parameters')->find(1);
+
         $html = $this->view->render('print.html.twig', array(
-            'resume' => $resume
+            'resume' => $resume,
+            'parameters' => $parameters
         ));
 
         return new Response($html, Response::HTTP_OK);

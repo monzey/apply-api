@@ -17,6 +17,9 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  *              "denormalization_context"={"groups"={"write"}}
  *      },
  *      itemOperations={
+ *              "get"={"method"="GET"},
+ *              "delete"={"method"="DELETE"},
+ *              "put"={"method"="PUT"},
  *              "print"={"route_name"="resume_print"}
  *      })
  *
@@ -36,12 +39,28 @@ class Resume extends Thing
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="about", type="text")
+     * @Groups({"read", "write"})
+     */
+    private $about;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Experience", mappedBy="resumes")
      * @ApiSubresource
      * @Groups({"read"})
      * @MaxDepth(1)
      */
     private $experiences;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="SocialLink", mappedBy="resumes")
+     * @ApiSubresource
+     * @Groups({"read"})
+     * @MaxDepth(1)
+     */
+    private $socialLinks;
 
     /**
      * @ORM\ManyToMany(targetEntity="Graduation", mappedBy="resumes")
@@ -66,15 +85,6 @@ class Resume extends Thing
      * @MaxDepth(1)
      */
     private $themes;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Parameters")
-     * @ORM\JoinColumn(name="parameters_id", referencedColumnName="id")
-     * @ApiSubresource
-     * @Groups({"read"})
-     * @MaxDepth(1)
-     */
-    private $parameters;
 
     /**
      * Get id
@@ -251,5 +261,63 @@ class Resume extends Thing
     public function getParameters()
     {
         return $this->parameters;
+    }
+
+    /**
+     * Set about
+     *
+     * @param string $about
+     *
+     * @return Resume
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    /**
+     * Get about
+     *
+     * @return string
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * Add socialLink
+     *
+     * @param \AppBundle\Entity\SocialLink $socialLink
+     *
+     * @return Resume
+     */
+    public function addSocialLink(\AppBundle\Entity\SocialLink $socialLink)
+    {
+        $this->socialLinks[] = $socialLink;
+
+        return $this;
+    }
+
+    /**
+     * Remove socialLink
+     *
+     * @param \AppBundle\Entity\SocialLink $socialLink
+     */
+    public function removeSocialLink(\AppBundle\Entity\SocialLink $socialLink)
+    {
+        $this->socialLinks->removeElement($socialLink);
+    }
+
+    /**
+     * Get socialLinks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSocialLinks()
+    {
+        return $this->socialLinks;
     }
 }
