@@ -1,0 +1,21 @@
+{
+  "name": "apply-api",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"><img src=\"https://api-platform.com/logo-250x250.png\" alt=\"API Platform\"></p>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monzey/apply-api.git"
+  },
+  "author": "monzey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monzey/apply-api/issues"
+  },
+  "homepage": "https://github.com/monzey/apply-api#readme",
+  "dependencies": {
+    "gridlex": "^2.7.1"
+  }
+}
