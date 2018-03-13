@@ -2,6 +2,7 @@
   "name": "apply-api",
   "version": "1.0.0",
   "description": "<p align=\"center\"><img src=\"https://api-platform.com/logo-250x250.png\" alt=\"API Platform\"></p>",
+  "main": "web/assets/js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,5 +18,11 @@
   "homepage": "https://github.com/monzey/apply-api#readme",
   "dependencies": {
     "gridlex": "^2.7.1"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.19.0",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.7",
+    "webpack-notifier": "^1.6.0"
   }
 }
