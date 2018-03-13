@@ -1,0 +1,13 @@
+@import "~gridlex/src/gridlex.scss";
+
+.experience__name,
+.graduation__name,
+.project__name
+{
+    font-weight: bold;
+}
+
+.experience__company,
+.graduation__school {
+    font-style: italic;
+}
