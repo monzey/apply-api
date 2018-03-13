@@ -4,95 +4,94 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Print.html</title>
-        <link rel="stylesheet" href="{{ asset('build/main.css') }}" type="text/css" media="screen" title="no title" charset="utf-8">
-    </head>
-    <body>
-        <div class="header">
-            <h1 class="header__name">{{ parameters.fullName }}</h1>
-            <div class="header__contact">
-                {{ parameters.emailAddress }}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Print.html</title>
+    <link rel="stylesheet" href="{{ asset('build/main.css') }}" type="text/css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="header__name">{{ parameters.fullName }}</h1>
+      <div class="header__contact">
+        {{ parameters.emailAddress }}
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="about">
+      <h2 class="about__title">About</h2>
+      <div class="about__content">
+        {{ resume.about }}
+      </div>
+    </div>
+    <hr>
+
+    <div class="experiences">
+      <h2 class="experiences__title">Experiences</h2>
+
+      {% for experience in resume.experiences %}
+        <div class="experience">
+          <div class="experience__head">
+            <div class="experience__name">
+              {{ experience.name }}
             </div>
-        </div>
-
-        <hr>
-        
-        <div class="about">
-            <h2 class="about__title">About</h2>
-            <div class="about__content">
-                {{ resume.about }}
+            <div class="experience__company">
+              {{ experience.company }}
             </div>
+            <div class="experience__year">
+              {{ experience.year }}
+            </div>
+          </div>
+          <div class="experience__description">
+            {{ experience.description }}
+          </div>
         </div>
-        <hr>
+      {% endfor %}
+    </div>
 
-        <div class="experiences">
-            <h2 class="experiences__title">Experiences</h2>
+    <hr>
 
-            {% for experience in resume.experiences %}
-                <div class="experience">
-                    <div class="experience__head">
-                        <div class="experience__name">
-                            {{ experience.name }}
-                        </div>
-                        <div class="experience__company">
-                            {{ experience.company }}
-                        </div>
-                        <div class="experience__year">
-                            {{ experience.year }}
-                        </div>
-                    </div>
-                    <div class="experience__description">
-                        {{ experience.description }}
-                    </div>
-                </div>
-            {% endfor %}
+    <div class="scholarship">
+      <h2 class="scholarship__title">Scholarship</h2>
+
+      {% for graduation in resume.graduations %}
+        <div class="graduation">
+          <div class="graduation__head">
+            <div class="graduation__name">
+              {{ graduation.name }}
+            </div>
+            <div class="graduation__school">
+              {{ graduation.school }}
+            </div>
+            <div class="graduation__year">
+              {{ graduation.year }}
+            </div>
+          </div>   
         </div>
+      {% endfor %}
+    </div>
 
-        <hr>
+    <hr>
+    <div class="projects">
 
-        <div class="scholarship">
-            
-            <h2 class="scholarship__title">Scholarship</h2>
+      <h2 class="projects__title">Projects</h2>
 
-            {% for graduation in resume.graduations %}
-                <div class="graduation">
-                    <div class="graduation__head">
-                        <div class="graduation__name">
-                            {{ graduation.name }}
-                        </div>
-                        <div class="graduation__school">
-                            {{ graduation.school }}
-                        </div>
-                        <div class="graduation__year">
-                            {{ graduation.year }}
-                        </div>
-                    </div>   
-                </div>
-            {% endfor %}
+      {% for project in resume.sideProjects %}
+        <div class="project">
+          <div class="project__head">
+            <div class="project__name">
+              {{ project.name }}
+            </div>
+          </div>   
+          <div class="project__description">
+            {{ project.description }}
+          </div>
         </div>
-
-        <hr>
-        <div class="projects">
-            
-            <h2 class="projects__title">Projects</h2>
-
-            {% for project in resume.sideProjects %}
-                <div class="project">
-                    <div class="project__head">
-                        <div class="project__name">
-                            {{ project.name }}
-                        </div>
-                    </div>   
-                    <div class="project__description">
-                        {{ project.description }}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <script src="{{ asset('build/main.js') }}"></script>
-    </body>
+      {% endfor %}
+    </div>
+    <script src="{{ asset('build/main.js') }}"></script>
+  </body>
 </html>
 
